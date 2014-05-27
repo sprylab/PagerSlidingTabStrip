@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.sprylab</groupId>
+        <artifactId>sprylab-parent</artifactId>
+        <version>3</version>
+    </parent>
+
+    <groupId>com.astuetz.pagerslidingtabstrip</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+
+    <name>PagerSlidingTabStrip</name>
+    <description>An interactive indicator to navigate between the different pages of a ViewPager</description>
+    <url>https://github.com/sprylab/PagerSlidingTabStrip</url>
+    <inceptionYear>2013</inceptionYear>
+    <version>1.0.1-sprylab</version>
+
+    <modules>
+        <module>library</module>
+        <module>sample</module>
+    </modules>
+
+    <scm>
+        <url>https://github.com/PSDev/LicensesDialog</url>
+        <connection>scm:git:git://github.com/sprylab/PagerSlidingTabStrip.git</connection>
+        <developerConnection>scm:git:git@github.com:sprylab/PagerSlidingTabStrip.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+	
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/sprylab/PagerSlidingTabStrip/issues</url>
+    </issueManagement>
+
+    <properties>
+        <!-- Project Properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.6</java.version>
+        <android.sdk.platform>16</android.sdk.platform>
+
+        <!-- Dependency Versions -->
+        <junit.version>4.11</junit.version>
+        <robolectric.version>2.2</robolectric.version>
+        <android.version>4.4.2_r3</android.version>
+        <android-support.version>19.1.0</android-support.version>
+
+        <!-- Plugin Versions -->
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <android-maven-plugin.version>3.8.1</android-maven-plugin.version>
+        <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+        <maven-release-plugin.version>2.4.1</maven-release-plugin.version>
+        <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Testing -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.robolectric</groupId>
+                <artifactId>robolectric</artifactId>
+                <version>${robolectric.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Android -->
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android</artifactId>
+                <version>${android.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.android.support</groupId>
+                <artifactId>support-v4</artifactId>
+                <version>${android-support.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <artifactId>android-maven-plugin</artifactId>
+                    <version>${android-maven-plugin.version}</version>
+                    <configuration>
+                        <sdk>
+                            <platform>${android.sdk.platform}</platform>
+                        </sdk>
+                        <lintEnableLibraries>true</lintEnableLibraries>
+                        <lintFailOnError>true</lintFailOnError>
+                        <lintEnableHtml>true</lintEnableHtml>
+                        <lintConfig>${project.basedir}/lint.xml</lintConfig>
+                        <lintSkip>true</lintSkip>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                    <configuration>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
